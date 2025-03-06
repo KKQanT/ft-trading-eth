@@ -1,0 +1,8 @@
+export const TEST_CONSTANTS = {
+    NAME: "Mock Token",
+    SYMBOL: "MTK",
+    DECIMALS: 18,
+    INITIAL_SUPPLY: 1000000,
+    MINT_AMOUNT: 100,
+    TRANSFER_AMOUNT: 50
+}; 
