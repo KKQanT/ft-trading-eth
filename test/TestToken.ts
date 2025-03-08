@@ -70,5 +70,33 @@ describe("TestToken", function () {
         testToken.connect(addr1).mint(100)
       ).to.be.revertedWithCustomError(testToken, "OwnableUnauthorizedAccount")
     })
+  }),
+
+  describe("Approval and TransferFrom", function () {
+    it("should allow approval of tokens", async function () {
+      await testToken.approve(addr1.address, 100);
+      expect(await testToken.allowance(owner.address, addr1.address)).to.equal(100);
+    })
+
+    it("should allow transferFrom to spend allowance", async function () {
+      await testToken.approve(addr1.address, 100);
+      await testToken.connect(addr1).transferFrom(owner.address, addr2.address, 50);
+      expect(await testToken.balanceOf(addr2.address)).to.equal(50);
+      expect(await testToken.allowance(owner.address, addr1.address)).to.equal(50);
+    })
+
+    it("should fail if sender doesn't have enough tokens", async function () {
+      await testToken.approve(addr1.address, 100);
+      await expect(
+        testToken.connect(addr1).transferFrom(owner.address, addr2.address, 101)
+      ).to.be.revertedWithCustomError(testToken, "ERC20InsufficientAllowance")
+    })
+
+    it("should fail if allowance is not enough", async function () {
+      await testToken.approve(addr1.address, 100);
+      await expect(
+        testToken.connect(addr1).transferFrom(owner.address, addr2.address, 101)
+      ).to.be.revertedWithCustomError(testToken, "ERC20InsufficientAllowance")
+    })
   })
 })
