@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import { ethers } from "hardhat";
-import { TestToken } from "../typechain-types";
+import { TestToken } from "../typechain-types/contracts/TestToken";
 import { SignerWithAddress } from "@nomicfoundation/hardhat-ethers/signers";
 import { TEST_CONSTANTS } from "./constants";
 

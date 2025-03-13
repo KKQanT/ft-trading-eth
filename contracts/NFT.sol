@@ -8,7 +8,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 
 
-contract S3TNFT is ERC721, ERC721URIStorage, ERC721Enumerable, Ownable, ReentrancyGuard {
+contract NFT is ERC721, ERC721URIStorage, ERC721Enumerable, Ownable, ReentrancyGuard {
     uint256 private _tokenIds;
     uint256 public constant MINP_PRICE = 0.01 ether;
     uint256 public constant MAX_SUPPLY = 10000;
