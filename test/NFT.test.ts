@@ -27,7 +27,7 @@ describe("NFT Contract", function () {
       const receipt = await tx.wait();
 
       // Get the NFTMinted event from the receipt
-      const nftMintedEvent = (await nft.queryFilter(nft.filters.NFTMinted(), receipt.blockNumber, receipt.blockNumber))?.[0];
+      const nftMintedEvent = (await nft.queryFilter(nft.filters.NFTMinted(), receipt?.blockNumber, receipt?.blockNumber))?.[0];
 
       // Type-safe assertions
       expect(nftMintedEvent).to.exist;
